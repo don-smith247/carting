@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const selectedProductImage = document.getElementById('selected-product');
   const selectedProductInfo = document.getElementById('selected-product-info');
   const selectedProductsList = document.getElementById('selected-products-list');
+  const checkout = document.getElementById('checkout');
 
   let cartItemsCount = 0;
   const selectedProducts = [];
@@ -53,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
         cartItemsCount++;
         updateCartCount(cartItemsCount);
         updateSelectedProductList(product);
+        updateCheckoutTotal(cartItemsCount);
       }
     });
   });
@@ -70,11 +72,29 @@ document.addEventListener('DOMContentLoaded', function() {
     const productImageSrc = product.querySelector('img').src;
 
     const listItem = document.createElement('li');
+    listItem.dataset.id = product.getAttribute('data-id');
     listItem.innerHTML = `
-      <img src="${productImageSrc}" alt="${productName}">
-      <span>${productName}</span>
+      <div class="product-info">
+        <img src="${productImageSrc}" alt="${productName}">
+        <span>${productName}</span>
+      </div>
+      <img class="delete-icon" src="icon-delete.svg" alt="Delete">
     `;
     selectedProductsList.appendChild(listItem);
+
+   
+    const deleteIcon = listItem.querySelector('.delete-icon');
+    deleteIcon.addEventListener('click', function() {
+      const productId = listItem.getAttribute('data-id');
+      const index = selectedProducts.indexOf(productId);
+      if (index !== -1) {
+        selectedProducts.splice(index, 1);
+        cartItemsCount--;
+        updateCartCount(cartItemsCount);
+        listItem.remove();
+        updateCheckoutTotal(cartItemsCount);
+      }
+    });
   }
 
   function toggleSelectedProductDropdown() {
@@ -90,16 +110,20 @@ document.addEventListener('DOMContentLoaded', function() {
    
     selectedProductsList.innerHTML = '';
 
-   
+    
     selectedProducts.forEach(productId => {
       const product = document.querySelector(`[data-id="${productId}"]`);
       updateSelectedProductList(product);
     });
   }
+
+  function updateCheckoutTotal(count) {
+    const totalPrice = count * 125; 
+    checkout.innerHTML = `Total: $${totalPrice} <button id="checkout-button">Checkout</button>`;
+    const checkoutButton = document.getElementById('checkout-button');
+    checkoutButton.addEventListener('click', function() {
+    
+      alert("Redirecting to payment page...");
+    });
+  }
 });
-
-
-
-
-
-

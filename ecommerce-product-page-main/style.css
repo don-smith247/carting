@@ -24,7 +24,7 @@ nav{
 }
 .first-ul li:hover{
     cursor: pointer; 
-    border-bottom: solid 2px hsl(26, 100%, 55%);
+    
 }
 .second-div{
     display: flex;
@@ -32,11 +32,6 @@ nav{
 }
 .second-div img{
     width: 30px;
-}
-.second-div img:hover{
-    border: solid 2px hsl(26, 100%, 55%);
-    border-radius: 50%;
-    cursor: pointer;
 }
 
 #gggc img{
@@ -67,7 +62,7 @@ nav{
     border-radius: 5px;
 }
 .img-2 img:hover{
-    border: solid 2px hsl(26, 100%, 55%);
+    /* border: solid 2px hsl(26, 100%, 55%); */
     cursor: pointer;
 }
 .img-3 img{
@@ -76,7 +71,7 @@ nav{
     border-radius: 5px;
 }
 .img-3 img:hover{
-    border: solid 2px hsl(26, 100%, 55%);
+    /* border: solid 2px hsl(26, 100%, 55%); */
     cursor: pointer;
 }
 .img-4 img{
@@ -307,6 +302,55 @@ nav{
     display: flex;
     gap: 25px;
 }
+
+#cart img {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
+
+  #cart img.selected {
+    border: 2px solid #007bff;
+    border-radius: 50%;
+  }
+
+  #selected-product-info {
+    display: none;
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    max-width: 300px;
+  }
+
+  #selected-product-info img {
+    width: 100px;
+    height: 100px;
+    display: block;
+    margin: 0 auto;
+  }
+
+  #selected-products-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .product-info {
+    margin-right: 20px;
+  }
+
+  .product-info img {
+    width: 100px;
+    height: auto;
+  }
+  .delete-icon {
+    width: 10px;
+   
+  }
 
 @media screen and (max-width:775px) {
     .third-div{
